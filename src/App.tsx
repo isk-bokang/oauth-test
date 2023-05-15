@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {memo} from 'react';
+import {GoogleOAuthProvider, useGoogleLogin} from "@react-oauth/google";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const googleOauthClientId = '238863129365-lpug07846cl3hvvskovbfi17hfflkgd8.apps.googleusercontent.com'
+
+    return (
+        <GoogleOAuthProvider clientId={googleOauthClientId}>
+            <div>
+                <GoogleLoginBtn/>
+            </div>
+        </GoogleOAuthProvider>
+    );
 }
+
+const GoogleLoginBtn = memo(() => {
+
+    const loginButtonOnClick = useGoogleLogin({
+        flow: "auth-code",
+        ux_mode: 'redirect',
+        state : "appID;https://alpha.iskra.world",
+        redirect_uri: "https://alpha-api.iskra.world/auth/v1/users/google/callback",
+
+    });
+
+    return (
+        <button onClick={() => loginButtonOnClick()}>
+            <img src="https://www.svgrepo.com/show/355037/google.svg" alt={'GOOGLE'}/>
+            <span>Continue with Google</span>
+        </button>
+    );
+});
 
 export default App;
