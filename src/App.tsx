@@ -19,7 +19,7 @@ const GoogleLoginBtn = memo(() => {
     const loginButtonOnClick = useGoogleLogin({
         flow: "auth-code",
         ux_mode: 'redirect',
-        state : "appID;https://alpha.iskra.world",
+        state : "appID;origin;returnUrl;return_to",
         redirect_uri: "https://alpha-api.iskra.world/auth/v1/users/google/callback",
 
     });
