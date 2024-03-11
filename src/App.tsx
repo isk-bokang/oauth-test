@@ -1,6 +1,9 @@
 import React, {memo} from 'react';
 import {GoogleOAuthProvider, useGoogleLogin} from "@react-oauth/google";
 import AppleLogin from "react-apple-login";
+import * as querystring from "querystring";
+import {generateQueryString} from "react-apple-login/dist/helper";
+import qs from 'qs'
 
 function App() {
 
@@ -18,6 +21,12 @@ function App() {
 
         <hr/>
         <PortalAppleLogin/>
+
+        <hr/>
+        <PortalDiscordConnect/>
+
+        <hr/>
+        <PortalXConnect/>
       </>
 
     );
@@ -75,4 +84,65 @@ const PortalAppleLogin = () => {
     />
   )
 }
+
+const PortalDiscordConnect = () =>{
+  const ConnectDiscord = async () => {
+
+    let baseUrl = "https://discord.com/oauth2/authorize"
+
+    const q = qs.parse({
+      "client_id" : "1215480971260989470",
+      "response_type" : "code",
+      "redirect_uri" : "http://localhost:8080/v1/users/connect/discord/callback",
+      "scope" : "email identify",
+      "state" : "appId;https://alpha.iskra.world;origin;returnUrl;returnTo"
+    })
+
+
+    console.log(`${baseUrl}?${qs.stringify(q)}`)
+    window.location.href = `${baseUrl}?${qs.stringify(q)}`
+
+  };
+
+
+
+  return (
+    <button onClick={ConnectDiscord}  >
+      Connect Discord
+    </button>
+  );
+};
+
+
+const PortalXConnect = () =>{
+  const connectX = async () => {
+
+    let baseUrl = "https://twitter.com/i/oauth2/authorize"
+
+    const q = qs.parse({
+      "client_id" : "RHl5cjZhZVZtNTQzbmFMZVRkSFo6MTpjaQ",
+      "response_type" : "code",
+      "redirect_uri" : "http://localhost:8080/v1/users/connect/x/callback",
+      "code_challenge" : "challenge",
+      "code_challenge_method" : "plain",
+      "scope" : "offline.access users.read tweet.read",
+      "state" : "appId;https://alpha.iskra.world;origin;returnUrl;returnTo"
+    })
+
+
+    console.log(`${baseUrl}?${qs.stringify(q)}`)
+    window.location.href = `${baseUrl}?${qs.stringify(q)}`
+
+  };
+
+
+
+  return (
+    <button onClick={connectX}  >
+      Connect X
+    </button>
+  );
+};
+
+
 export default App;
