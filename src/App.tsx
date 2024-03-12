@@ -94,7 +94,7 @@ const PortalDiscordConnect = () =>{
       "client_id" : "1215480971260989470",
       "response_type" : "code",
       "redirect_uri" : "http://localhost:8080/v1/users/connect/discord/callback",
-      "scope" : "identify email guilds",
+      "scope" : "identify email guilds guilds.members.read",
       "state" : "appId;https://alpha.iskra.world;origin;returnUrl;returnTo"
     })
 
