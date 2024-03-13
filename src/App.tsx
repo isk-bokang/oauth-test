@@ -93,7 +93,7 @@ const PortalDiscordConnect = () =>{
     const q = qs.parse({
       "client_id" : "1215480971260989470",
       "response_type" : "code",
-      "redirect_uri" : "http://localhost:8080/v1/users/connect/discord/callback",
+      "redirect_uri" : "https://alpha-api.iskra.world/auth/v1/users/connect/discord/callback",
       "scope" : "identify email guilds guilds.members.read",
       "state" : "appId;https://alpha.iskra.world;origin;returnUrl;returnTo"
     })
@@ -122,7 +122,7 @@ const PortalXConnect = () =>{
     const q = qs.parse({
       "client_id" : "RHl5cjZhZVZtNTQzbmFMZVRkSFo6MTpjaQ",
       "response_type" : "code",
-      "redirect_uri" : "http://localhost:8080/v1/users/connect/x/callback",
+      "redirect_uri" : "https://alpha-api.iskra.world/auth/v1/users/connect/x/callback",
       "code_challenge" : "challenge",
       "code_challenge_method" : "plain",
       "scope" : "offline.access tweet.read users.read like.read follows.read",
